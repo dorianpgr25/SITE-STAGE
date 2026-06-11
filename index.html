@@ -172,7 +172,18 @@
         }
     </script>
 </body>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
+      // Force l'ouverture de la boîte de dialogue si on vient d'un lien d'invitation ou de reset
+      if (window.location.hash) {
+        document.addEventListener("DOMContentLoaded", () => {
+          setTimeout(() => {
+            window.netlifyIdentity.open();
+          }, 500);
+        });
+      }
+
+      // Gestion de la redirection après connexion
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", user => {
           if (!user) {
@@ -183,4 +194,5 @@
         });
       }
     </script>
+</body>
 </html>
