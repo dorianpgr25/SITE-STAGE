@@ -11,13 +11,13 @@
 </head>
 <body>
 
-    <div id="google_translate_element"></div>
+    <div id="google_translate_element" style="visibility:hidden;position:absolute;top:-9999px;"></div>
 
     <nav class="lang-selector">
-        <button class="lang-btn" onclick="translatePage('fr')">FR 🇫🇷</button>
-        <button class="lang-btn" onclick="translatePage('en')">EN 🇬🇧</button>
-        <button class="lang-btn" onclick="translatePage('es')">ES 🇪🇸</button>
-        <button class="lang-btn" onclick="translatePage('zh-CN')">CN 🇨🇳</button>
+        <button class="lang-btn" onclick="translateInstant('fr')">FR 🇫🇷</button>
+        <button class="lang-btn" onclick="translateInstant('en')">EN 🇬🇧</button>
+        <button class="lang-btn" onclick="translateInstant('es')">ES 🇪🇸</button>
+        <button class="lang-btn" onclick="translateInstant('zh-CN')">CN 🇨🇳</button>
     </nav>
 
     <main>
@@ -63,10 +63,10 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            // 1. On charge d'abord le contenu JSON
             fetch('./content.json')
                 .then(response => response.json())
                 .then(data => {
-                    // Remplissage des blocs
                     document.getElementById('hero-badge').textContent = data.hero?.badge || '';
                     document.getElementById('hero-title').textContent = data.hero?.title || '';
                     document.getElementById('hero-description').textContent = data.hero?.description || '';
@@ -111,39 +111,63 @@
                             </div>`;
                     });
 
-                    // Lancement de Google Translate une fois le JSON chargé
-                    initGoogleTranslate();
+                    // 2. On injecte l'API Google Translate juste après la data
+                    const script = document.createElement('script');
+                    script.type = 'text/javascript';
+                    script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+                    document.body.appendChild(script);
                 })
-                .catch(err => console.error("Erreur JSON:", err));
+                .catch(err => console.error("Erreur de chargement JSON :", err));
         });
 
-        function initGoogleTranslate() {
-            const script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-            document.body.appendChild(script);
-        }
-
+        // Initialisation de l'iframe Google en mode silencieux
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'fr',
                 includedLanguages: 'fr,en,es,zh-CN',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
                 autoDisplay: false
             }, 'google_translate_element');
 
-            // Force la langue stockée ou celle du navigateur
+            // Applique directement la langue si l'utilisateur a déjà fait un choix auparavant
             setTimeout(() => {
-                let savedLang = localStorage.getItem('bisons-lang');
-                if (savedLang) translatePage(savedLang);
-            }, 500);
+                let currentLang = localStorage.getItem('bisons-lang');
+                if (currentLang && currentLang !== 'fr') {
+                    translateInstant(currentLang);
+                }
+            }, 300);
         }
 
-        function translatePage(langCode) {
+        // LE MOTEUR DU CLIC DE TRADUCTION DIRECTE
+        function translateInstant(langCode) {
             localStorage.setItem('bisons-lang', langCode);
-            const select = document.querySelector('.goog-te-combo');
-            if (select) {
-                select.value = langCode;
-                select.dispatchEvent(new Event('change'));
+            
+            // Si c'est le français, on réinitialise pour éviter les conflits de cache Google
+            if (langCode === 'fr') {
+                const iframe = document.querySelector('.goog-te-banner-frame');
+                if (iframe) {
+                    const restoreBtn = iframe.contentWindow.document.getElementById(':1.restore');
+                    if (restoreBtn) restoreBtn.click();
+                } else {
+                    location.reload(); // Solution de secours propre pour restaurer le français d'origine
+                }
+                return;
+            }
+
+            // Pour les autres langues, on force la sélection dans le composant masqué
+            const selectContainer = document.querySelector('.goog-te-combo');
+            if (selectContainer) {
+                selectContainer.value = langCode;
+                selectContainer.dispatchEvent(new Event('change'));
+            } else {
+                // Si l'API met une demi-seconde de plus à répondre, on réessaye immédiatement
+                setTimeout(() => {
+                    const retrySelect = document.querySelector('.goog-te-combo');
+                    if (retrySelect) {
+                        retrySelect.value = langCode;
+                        retrySelect.dispatchEvent(new Event('change'));
+                    }
+                }, 150);
             }
         }
     </script>
