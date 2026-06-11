@@ -1,1 +1,60 @@
-
+{
+  "hero": {
+    "badge": "Session Été 2026",
+    "title": "DOMINE L'ARÈNE",
+    "description": "Un stage de tennis de table intensif et ultra-premium conçu pour briser tes limites techniques et tactiques. Entraîne-toi à la dure.",
+    "cta": "Réserver ton entrée"
+  },
+  "adn": {
+    "title": "L'Exigence du Haut Niveau",
+    "description": "Ici, on oublie le ping-pong de loisir. Notre programme s'aligne sur les exigences professionnelles : paniers de balles intenses, analyse vidéo immédiate de tes postures, et schémas de jeu appliqués au millimètre.",
+    "image": "https://images.unsplash.com/photo-1534158914592-062992fbe900?q=80&w=800"
+  },
+  "gallery": {
+    "title": "L'Immersion Pro",
+    "images": [
+      "https://images.unsplash.com/photo-1609710223516-97a1709929ed?q=80&w=600",
+      "https://images.unsplash.com/photo-1511067007398-7e4b90cfa4bc?q=80&w=600",
+      "https://images.unsplash.com/photo-1534158914592-062992fbe900?q=80&w=600"
+    ]
+  },
+  "advantages": {
+    "title": "Armé pour Gagner",
+    "items": [
+      {
+        "icon": "⚡",
+        "title": "Intensité Maximale",
+        "description": "6 heures de pratique quotidienne encadrées, centrées sur le déplacement et l'impact."
+      },
+      {
+        "icon": "🎥",
+        "title": "Analyse Vidéo",
+        "description": "Correction chirurgicale en direct des angles et de l'inclinaison de ta raquette."
+      },
+      {
+        "icon": "🏓",
+        "title": "Flux de balles",
+        "description": "Relances théorisées à haute fréquence pour automatiser le geste parfait."
+      }
+    ]
+  },
+  "staff": {
+    "title": "Le Corps Enseignant",
+    "members": [
+      {
+        "role": "Coach Principal",
+        "name": "Jérôme",
+        "grip": "Orthodoxe",
+        "style": "Attaquant Topspin",
+        "rank": "N°300 National"
+      },
+      {
+        "role": "Expert Tactique",
+        "name": "Alexandre",
+        "grip": "Porte-Plume",
+        "style": "Bloqueur / Varié",
+        "rank": "Ancien Numéroté"
+      }
+    ]
+  }
+}
