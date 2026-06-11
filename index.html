@@ -3,88 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stage Performance - Les Bisons Vibraysiens</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <title>BISONS ELITE - Stage Tennis de Table Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-    <header class="hero">
-        <div class="hero-content">
-            <div class="badge" id="cms-badge">Session Été 2026</div>
-            <h1 id="cms-hero-title">Dominez la table. <br><span>Devenez un Bison.</span></h1>
-            <p id="cms-hero-desc">Un stage intensif de tennis de table mêlant technique pro et cohésion d'équipe.</p>
-            <a href="#contact" class="btn-main">Réserver ma place</a>
-        </div>
-        <div class="hero-visual">
-            <div class="image-zoom-container">
-                <img id="cms-hero-img" src="https://images.unsplash.com/photo-1534158914592-062992fbe900?auto=format&fit=crop&q=80" alt="Ping Pong">
-            </div>
-        </div>
-    </header>
+    <div id="google_translate_element" style="display:none;"></div>
 
-    <section class="section presentation">
-        <div class="container grid-2">
-            <div class="text-block">
-                <h2 class="section-title" id="cms-pres-title">La Méthode Bisons</h2>
-                <p id="cms-pres-text">Nous croyons en une approche scientifique du tennis de table. Analyse vidéo, biomécanique du geste et tactique de match : nous ne laissons rien au hasard.</p>
-            </div>
-            <div class="image-zoom-container">
-                <img id="cms-pres-img" src="https://images.unsplash.com/photo-1611251101920-7f28876c49cc?auto=format&fit=crop&q=80" alt="Training">
-            </div>
-        </div>
-    </section>
+    <nav class="lang-selector">
+        <button class="lang-btn" onclick="translatePage('fr')">🇫🇷</button>
+        <button class="lang-btn" onclick="translatePage('es')">🇪🇸</button>
+        <button class="lang-btn" onclick="translatePage('zh-CN')">🇨🇳</button>
+        <button class="lang-btn" onclick="translatePage('en')">🇬🇧</button>
+    </nav>
 
-    <section class="section advantages">
-        <div class="container">
-            <h2 class="section-title center">Pourquoi nous choisir ?</h2>
-            <div class="cards-grid" id="cms-advantages-list">
-                <div class="card">
-                    <div class="card-icon">🏓</div>
-                    <h3>Coaching National</h3>
-                    <p>Encadrement par des entraîneurs diplômés d'État de niveau National.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">⚡</div>
-                    <h3>Intensité</h3>
-                    <p>6 heures de tennis de table par jour pour une progression fulgurante.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🏠</div>
-                    <h3>Pension Complète</h3>
-                    <p>Hébergement et restauration de qualité au cœur de Vibraye.</p>
-                </div>
+    <main>
+        <section class="hero-section">
+            <div class="table-line"></div>
+            <div class="hero-content">
+                <span id="hero-badge" class="session-badge">Loading...</span>
+                <h1 id="hero-title" class="hero-title">Loading...</h1>
+                <p id="hero-description" class="hero-description">Loading...</p>
+                <button id="hero-cta" class="cta-button">Loading...</button>
             </div>
-        </div>
-    </section>
-
-    <section class="section team">
-        <div class="container">
-            <h2 class="section-title center">Le Staff</h2>
-            <div class="team-grid" id="cms-team-list">
-                <div class="member">
-                    <div class="member-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80" alt="Coach">
-                    </div>
-                    <h3>Nicolas Dumont</h3>
-                    <span>Directeur Technique</span>
-                </div>
+            <div class="visual-container">
+                <div class="paddle-glow">🏓</div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer class="footer">
-        <div class="container">
-            <h2>Rejoignez le troupeau</h2>
-            <div class="social-links">
-                <a href="#" class="social-link">Facebook</a>
-                <a href="#" class="social-link">Instagram</a>
-                <a href="#" class="social-link">YouTube</a>
+        <section class="adn-section">
+            <div class="adn-content">
+                <h2 id="adn-title" class="section-title">Loading...<span class="paddle-line"></span></h2>
+                <p id="adn-text" class="adn-text">Loading...</p>
             </div>
-            <p class="copyright">© 2026 Vibraye ASTT - Design par l'agence</p>
-        </div>
-    </footer>
+            <div class="adn-visual">
+                <img id="adn-image" src="" alt="Présentation Stage" class="robust-img">
+            </div>
+        </section>
 
+        <section class="gallery-section">
+            <h2 id="gallery-title" class="section-title">Loading...<span class="paddle-line"></span></h2>
+            <div id="gallery-grid" class="gallery-grid"></div>
+        </section>
+
+        <section class="advantages-section">
+            <h2 id="advantages-title" class="section-title">Loading...<span class="paddle-line"></span></h2>
+            <div id="advantages-grid" class="grid-container"></div>
+        </section>
+
+        <section class="staff-section">
+            <h2 id="staff-title" class="section-title">Loading...<span class="paddle-line"></span></h2>
+            <div id="staff-grid" class="staff-grid"></div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('./content.json')
+                .then(response => response.json())
+                .then(data => {
+                    // Remplissage Bloc 1
+                    document.getElementById('hero-badge').textContent = data.hero?.badge || '';
+                    document.getElementById('hero-title').textContent = data.hero?.title || '';
+                    document.getElementById('hero-description').textContent = data.hero?.description || '';
+                    document.getElementById('hero-cta').textContent = data.hero?.cta || '';
+
+                    // Remplissage Bloc 2
+                    document.getElementById('adn-title').innerHTML = (data.adn?.title || '') + '<span class="paddle-line"></span>';
+                    document.getElementById('adn-text').textContent = data.adn?.description || '';
+                    document.getElementById('adn-image').src = data.adn?.image || 'https://images.unsplash.com/photo-1534158914592-062992fbe900?q=80&w=800';
+
+                    // Remplissage Bloc 3 (Galerie)
+                    document.getElementById('gallery-title').innerHTML = (data.gallery?.title || 'Galerie') + '<span class="paddle-line"></span>';
+                    const galleryGrid = document.getElementById('gallery-grid');
+                    galleryGrid.innerHTML = '';
+                    (data.gallery?.images || []).forEach(imgUrl => {
+                        const box = document.createElement('div');
+                        box.className = 'gallery-item';
+                        box.innerHTML = `<img src="${imgUrl}" class="robust-img" alt="Ping Pong">`;
+                        galleryGrid.appendChild(box);
+                    });
+
+                    // Remplissage Bloc 4 (Avantages)
+                    document.getElementById('advantages-title').innerHTML = (data.advantages?.title || 'Avantages') + '<span class="paddle-line"></span>';
+                    const advGrid = document.getElementById('advantages-grid');
+                    advGrid.innerHTML = '';
+                    (data.advantages?.items || []).forEach(item => {
+                        const card = document.createElement('div');
+                        card.className = 'advantage-card';
+                        card.innerHTML = `
+                            <span class="card-icon">${item.icon || '⚡'}</span>
+                            <h3 class="card-title">${item.title || ''}</h3>
+                            <p class="card-desc">${item.description || ''}</p>
+                        `;
+                        advGrid.appendChild(card);
+                    });
+
+                    // Remplissage Bloc 5 (Staff)
+                    document.getElementById('staff-title').innerHTML = (data.staff?.title || 'Staff') + '<span class="paddle-line"></span>';
+                    const staffGrid = document.getElementById('staff-grid');
+                    staffGrid.innerHTML = '';
+                    (data.staff?.members || []).forEach(coach => {
+                        const card = document.createElement('div');
+                        card.className = 'staff-card';
+                        card.innerHTML = `
+                            <span class="staff-role">${coach.role || ''}</span>
+                            <h3 class="staff-name">${coach.name || ''}</h3>
+                            <div class="staff-stats">
+                                <div class="stat-row"><span class="stat-label">Prise</span><span class="stat-value">${coach.grip || ''}</span></div>
+                                <div class="stat-row"><span class="stat-label">Style</span><span class="stat-value">${coach.style || ''}</span></div>
+                                <div class="stat-row highlight"><span class="stat-label">Classement</span><span class="stat-value">${coach.rank || ''}</span></div>
+                            </div>
+                        `;
+                        staffGrid.appendChild(card);
+                    });
+                }).catch(err => console.error("Erreur de chargement du contenu JSON:", err));
+        });
+    </script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'fr',
+                includedLanguages: 'fr,es,zh-CN,en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+
+            setTimeout(() => {
+                let userLang = localStorage.getItem('auto-lang') || navigator.language || navigator.userLanguage;
+                userLang = userLang.split('-')[0];
+                if (userLang === 'zh') translatePage('zh-CN');
+                else if (userLang === 'es') translatePage('es');
+                else if (userLang === 'en') translatePage('en');
+            }, 1200);
+        }
+
+        function translatePage(langCode) {
+            localStorage.setItem('auto-lang', langCode);
+            const selectEl = document.querySelector('.goog-te-combo');
+            if (selectEl) {
+                selectEl.value = langCode;
+                selectEl.dispatchEvent(new Event('change'));
+            }
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
