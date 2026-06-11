@@ -1,3 +1,10 @@
+Pour que la traduction se fasse **entièrement seule** une fois le site en ligne, sans avoir à gérer les dictionnaires à la main dans le code, il faut utiliser une API de traduction dynamique.
+
+Voici le code mis à jour. J'ai intégré le script officiel de **Google Translate API (gratuit)**. Le site va détecter la langue du navigateur de l'utilisateur et traduire automatiquement tout le contenu textuel de la page en un clin d'œil, sans aucun dictionnaire à remplir.
+
+Tu as juste à remplacer ton fichier par celui-ci :
+
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,18 +15,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* --- CONFIGURATION & VARIABLES STRICTES --- */
+        /* ==========================================================================
+           CONFIGURATIONS & VARIABLES STRICTES (CHARTE BISONS ELITE)
+           ========================================================================== */
         :root {
-            --bg-immersive: #020617;
-            --bg-card: #0B1E36;
-            --neon-green: #22C55E;
-            --impact-red: #EF4444;
-            --text-light: #F8FAFC;
-            --text-muted: #94A3B8;
+            --bg-immersive: #020617;   /* Noir bleuté très profond */
+            --bg-card: #0B1E36;        /* Bleu nuit officiel des Bisons */
+            --neon-green: #22C55E;     /* Vert électrique fluorescent */
+            --impact-red: #EF4444;     /* Rouge revêtement de raquette */
+            --text-light: #F8FAFC;     /* Blanc cassé premium */
+            --text-muted: #94A3B8;     /* Gris texturé lisible */
             --font-main: 'Space Grotesk', sans-serif;
         }
 
-        * {
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -31,9 +40,23 @@
             font-family: var(--font-main);
             overflow-x: hidden;
             line-height: 1.5;
+            top: 0 !important; /* Corrige le décalage du bandeau Google Translate */
         }
 
-        /* --- DRAPEAUX / i18n ACCORDION --- */
+        /* Masquer le bandeau Google Translate du haut pour garder le design propre */
+        .skiptranslate iframe, .goog-te-banner-frame {
+            display: none !important;
+        }
+        body {
+            position: static !important;
+        }
+        .goog-te-gadget {
+            display: none !important;
+        }
+
+        /* ==========================================================================
+           SÉLECTEUR DE LANGUE (DISCRET / FLOTTANT)
+           ========================================================================== */
         .lang-selector {
             position: fixed;
             top: 20px;
@@ -60,7 +83,9 @@
             transform: scale(1.2);
         }
 
-        /* --- BLOC 1 : HERO SHOCK --- */
+        /* ==========================================================================
+           BLOC 1 : HERO SHOCK (L'ACCROCHE DYNAMIQUE)
+           ========================================================================== */
         .hero-section {
             min-height: 100vh;
             display: grid;
@@ -123,7 +148,6 @@
             margin-bottom: 36px;
         }
 
-        /* BOUTON REACTION FLASH */
         .cta-button {
             background-color: var(--neon-green);
             color: var(--bg-immersive);
@@ -145,7 +169,6 @@
             box-shadow: 0 0 25px rgba(34, 197, 94, 0.6);
         }
 
-        /* EFFET SMASH VISUEL */
         .visual-container {
             width: 100%;
             position: relative;
@@ -164,7 +187,6 @@
             position: relative;
         }
 
-        /* Simulation d'une image dynamique via un bloc stylisé */
         .smash-wrapper .placeholder-img {
             width: 100%;
             height: 100%;
@@ -186,8 +208,9 @@
             transform: scale(1.1);
         }
 
-
-        /* --- BLOC 2 : ADN & METHODE (INVERSION STRUCTURE) --- */
+        /* ==========================================================================
+           BLOC 2 : PRESENTATION & METHODE (L'ADN INVERSÉ)
+           ========================================================================== */
         .adn-section {
             padding: 100px 4%;
             display: grid;
@@ -198,7 +221,7 @@
 
         @media (min-width: 992px) {
             .adn-section {
-                grid-template-columns: 0.8fr 1.2fr; /* Inversion visuelle naturelle */
+                grid-template-columns: 0.8fr 1.2fr;
             }
             .adn-content {
                 grid-column: 2;
@@ -235,30 +258,178 @@
         .adn-text strong {
             color: var(--text-light);
         }
+
+        /* ==========================================================================
+           BLOC 3 : LES AVANTAGES (LA GRILLE DE PERFORMANCE)
+           ========================================================================== */
+        .advantages-section {
+            padding: 100px 4%;
+            background: linear-gradient(180deg, var(--bg-immersive) 0%, rgba(11, 30, 54, 0.5) 100%);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .advantage-card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            border-radius: 4px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+        }
+
+        .advantage-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--neon-green);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.15);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .advantage-card:hover .card-icon {
+            transform: rotate(15deg) scale(1.2);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -0.01em;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           BLOC 4 : LE STAFF (FICHES STATS JEU VIDÉO)
+           ========================================================================== */
+        .staff-section {
+            padding: 100px 4% 150px 4%;
+        }
+
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .staff-card {
+            background: linear-gradient(145deg, var(--bg-card) 0%, rgba(2, 6, 23, 0.8) 100%);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .staff-card:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 25px rgba(34, 197, 94, 0.2);
+        }
+
+        .staff-bg-emoji {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            font-size: 10rem;
+            opacity: 0.05;
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+
+        .staff-card:hover .staff-bg-emoji {
+            opacity: 0.12;
+            transform: scale(1.1) rotate(-10deg);
+        }
+
+        .staff-role {
+            color: var(--neon-green);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 5px;
+        }
+
+        .staff-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            line-height: 1.1;
+        }
+
+        .staff-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .stat-value {
+            color: var(--text-light);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .stat-row.highlight .stat-value {
+            color: var(--impact-red);
+        }
     </style>
 </head>
 <body>
 
+    <div id="google_translate_element" style="display:none;"></div>
+
     <nav class="lang-selector">
-        <button class="lang-btn" title="Français">🇫🇷</button>
-        <button class="lang-btn" title="Español">🇪🇸</button>
-        <button class="lang-btn" title="Chinois Mandarin">🇨🇳</button>
-        <button class="lang-btn" title="Cantonais HK">🇭🇰</button>
+        <button class="lang-btn" onclick="translatePage('fr')">🇫🇷</button>
+        <button class="lang-btn" onclick="translatePage('es')">🇪🇸</button>
+        <button class="lang-btn" onclick="translatePage('zh-CN')">🇨🇳</button>
+        <button class="lang-btn" onclick="translatePage('zh-TW')">🇭🇰</button>
     </nav>
 
     <main>
         <section class="hero-section">
             <div class="hero-content">
-                <span class="session-badge" id="hero-badge">Session Été 2026</span>
-                <h1 class="hero-title" id="hero-title">
+                <span class="session-badge">Session Été 2026</span>
+                <h1 class="hero-title">
                     <span>DOMINE</span> 
-                    L'ARENE DES 
+                    L'ARÈNE DES 
                     <em>BISONS</em>
                 </h1>
-                <p class="hero-description" id="hero-desc">
+                <p class="hero-description">
                     Un stage de tennis de table ultra-premium conçu pour briser tes limites. Entraîne-toi comme les pros dans une atmosphère électrique.
                 </p>
-                <button class="cta-button" id="hero-cta">Rejoindre l'Élite</button>
+                <button class="cta-button">Rejoindre l'Élite</button>
             </div>
             
             <div class="visual-container">
@@ -270,14 +441,14 @@
 
         <section class="adn-section">
             <div class="adn-content">
-                <h2 class="section-title" id="adn-title">
+                <h2 class="section-title">
                     L'INTENSITÉ À <br>CHAQUE INCLINAISON
                     <border></border>
                 </h2>
-                <p class="adn-text" id="adn-p1">
+                <p class="adn-text">
                     Ici, on oublie le ping-pong de loisir. Notre programme s'aligne sur les exigences du haut niveau : <strong>6 heures d'entraînement intensif par jour</strong>, paniers de balles robotisés, et travail physique spécifique.
                 </p>
-                <p class="adn-text" id="adn-p2">
+                <p class="adn-text">
                     Chaque geste est disséqué par <strong>analyse vidéo instantanée</strong>. Tu ne viens pas pour jouer, tu viens pour acquérir la puissance du geste parfait et saboter la défense adverse.
                 </p>
             </div>
@@ -288,7 +459,100 @@
                 </div>
             </div>
         </section>
+
+        <section class="advantages-section">
+            <h2 class="section-title">
+                ARMÉ POUR LA PERFORMANCE
+                <border></border>
+            </h2>
+            
+            <div class="grid-container">
+                <div class="advantage-card">
+                    <span class="card-icon">⚡</span>
+                    <h3 class="card-title">Intensité Max</h3>
+                    <p class="card-desc">6 heures de pratique quotidienne rythmées par des schémas tactiques de haut niveau.</p>
+                </div>
+                <div class="advantage-card">
+                    <span class="card-icon">🎥</span>
+                    <h3 class="card-title">Analyse Vidéo</h3>
+                    <p class="card-desc">Correction chirurgicale de tes placements et inclinaisons de raquette en temps réel.</p>
+                </div>
+                <div class="advantage-card">
+                    <span class="card-icon">🤖</span>
+                    <h3 class="card-title">Relance Robotisée</h3>
+                    <p class="card-desc">Des flux de balles à haute fréquence pour automatiser le geste parfait sans faillir.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="staff-section">
+            <h2 class="section-title">
+                LE CORPS ENSEIGNANT
+                <border></border>
+            </h2>
+
+            <div class="staff-grid">
+                <div class="staff-card">
+                    <div class="staff-bg-emoji">🏓</div>
+                    <span class="staff-role">Coach Principal</span>
+                    <h3 class="staff-name">Coach Jerome</h3>
+                    <div class="staff-stats">
+                        <div class="stat-row"><span class="stat-label">Style</span><span class="stat-value">Attaquant / Topspin</span></div>
+                        <div class="stat-row highlight"><span class="stat-label">Classement</span><span class="stat-value">N°300 FR</span></div>
+                        <div class="stat-row"><span class="stat-label">Expérience</span><span class="stat-value">12 Ans</span></div>
+                    </div>
+                </div>
+
+                <div class="staff-card">
+                    <div class="staff-bg-emoji">🧠</div>
+                    <span class="staff-role">Expert Tactique</span>
+                    <h3 class="staff-name">Coach Alex</h3>
+                    <div class="staff-stats">
+                        <div class="stat-row"><span class="stat-label">Style</span><span class="stat-value">Bloqueur / Varié</span></div>
+                        <div class="stat-row highlight"><span class="stat-label">Mental</span><span class="stat-value">98/100</span></div>
+                        <div class="stat-row"><span class="stat-label">Analyse</span><span class="stat-value">Vidéo HD</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'fr',
+                includedLanguages: 'fr,es,zh-CN,zh-TW',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+
+            // Détection automatique de la langue du navigateur au premier démarrage
+            setTimeout(() => {
+                let userLang = localStorage.getItem('auto-lang') || navigator.language || navigator.userLanguage;
+                userLang = userLang.split('-')[0]; // Récupère le code racine (fr, es, zh)
+                
+                if (navigator.language.toLowerCase() === 'zh-hk' || navigator.language.toLowerCase() === 'zh-tw') {
+                    translatePage('zh-TW'); // Spécifique Hong Kong Caractères traditionnels
+                } else if (userLang === 'zh') {
+                    translatePage('zh-CN');
+                } else if (userLang === 'es') {
+                    translatePage('es');
+                }
+            }, 1000);
+        }
+
+        // Fonction pour forcer le changement au clic sur un drapeau
+        function translatePage(langCode) {
+            localStorage.setItem('auto-lang', langCode);
+            const selectEl = document.querySelector('.goog-te-combo');
+            if (selectEl) {
+                selectEl.value = langCode;
+                selectEl.dispatchEvent(new Event('change'));
+            }
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
+
+```
