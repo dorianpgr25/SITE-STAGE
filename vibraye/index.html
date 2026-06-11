@@ -3,104 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stage Performance - Les Bisons Vibraysiens</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Urbanist:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <title>BISONS ELITE - Stage Tennis de Table Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CONFIGURATION & VARIABLES STRICTES --- */
+        :root {
+            --bg-immersive: #020617;
+            --bg-card: #0B1E36;
+            --neon-green: #22C55E;
+            --impact-red: #EF4444;
+            --text-light: #F8FAFC;
+            --text-muted: #94A3B8;
+            --font-main: 'Space Grotesk', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-immersive);
+            color: var(--text-light);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* --- DRAPEAUX / i18n ACCORDION --- */
+        .lang-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+            background: rgba(11, 30, 54, 0.8);
+            padding: 8px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .lang-btn:hover {
+            transform: scale(1.2);
+        }
+
+        /* --- BLOC 1 : HERO SHOCK --- */
+        .hero-section {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+            padding: 80px 4% 40px 4%;
+            gap: 40px;
+        }
+
+        @media (min-width: 992px) {
+            .hero-section {
+                grid-template-columns: 1.2fr 0.8fr;
+            }
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .session-badge {
+            background-color: rgba(34, 197, 94, 0.1);
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+            padding: 6px 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            line-height: 0.95;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-title span {
+            color: transparent;
+            -webkit-text-stroke: 1px var(--text-light);
+            display: block;
+        }
+
+        .hero-title em {
+            font-style: normal;
+            color: var(--impact-red);
+        }
+
+        .hero-description {
+            color: var(--text-muted);
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            max-width: 600px;
+            margin-bottom: 36px;
+        }
+
+        /* BOUTON REACTION FLASH */
+        .cta-button {
+            background-color: var(--neon-green);
+            color: var(--bg-immersive);
+            font-family: var(--font-main);
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            padding: 16px 40px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            letter-spacing: 0.05em;
+            position: relative;
+            box-shadow: 0 0 0px rgba(34, 197, 94, 0);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(34, 197, 94, 0.6);
+        }
+
+        /* EFFET SMASH VISUEL */
+        .visual-container {
+            width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .smash-wrapper {
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 4/5;
+            background: var(--bg-card);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        /* Simulation d'une image dynamique via un bloc stylisé */
+        .smash-wrapper .placeholder-img {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0b1e36 0%, #ef4444 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .smash-wrapper:hover {
+            transform: scale(1.05) rotate(1deg);
+            border-color: var(--neon-green);
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.4);
+        }
+
+        .smash-wrapper:hover .placeholder-img {
+            transform: scale(1.1);
+        }
+
+
+        /* --- BLOC 2 : ADN & METHODE (INVERSION STRUCTURE) --- */
+        .adn-section {
+            padding: 100px 4%;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media (min-width: 992px) {
+            .adn-section {
+                grid-template-columns: 0.8fr 1.2fr; /* Inversion visuelle naturelle */
+            }
+            .adn-content {
+                grid-column: 2;
+            }
+            .adn-visual {
+                grid-column: 1;
+                grid-row: 1;
+            }
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1;
+        }
+
+        .section-title border {
+            display: block;
+            width: 80px;
+            height: 5px;
+            background-color: var(--impact-red);
+            margin-top: 15px;
+        }
+
+        .adn-text {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            max-width: 650px;
+        }
+
+        .adn-text strong {
+            color: var(--text-light);
+        }
+    </style>
 </head>
 <body>
 
-    <header class="hero">
-        <div class="hero-content">
-            <div class="badge" id="cms-badge">Session Élite 2026</div>
-            <h1 id="cms-hero-title">Dominez la table.<br><span>Forgez votre spin.</span></h1>
-            <p id="cms-hero-desc">Rejoignez les Bisons de Vibraye pour une immersion totale. 6 heures d'entraînement quotidien, tactique de haut niveau et infrastructures professionnelles.</p>
-            <a href="#contact" class="btn-main">Réserver ma place</a>
-        </div>
-        <div class="hero-visual">
-            <div class="image-zoom-container">
-                <img id="cms-hero-img" src="https://images.unsplash.com/photo-1534158914592-062992fbe900?auto=format&fit=crop&q=80&w=1200" alt="Balle de ping pong en mouvement rapide">
-            </div>
-        </div>
-    </header>
+    <nav class="lang-selector">
+        <button class="lang-btn" title="Français">🇫🇷</button>
+        <button class="lang-btn" title="Español">🇪🇸</button>
+        <button class="lang-btn" title="Chinois Mandarin">🇨🇳</button>
+        <button class="lang-btn" title="Cantonais HK">🇭🇰</button>
+    </nav>
 
-    <section class="section presentation">
-        <div class="container grid-2">
-            <div class="text-block">
-                <span class="lightning-accent">⚡ EXTENSION HISTORIQUE</span>
-                <h2 class="section-title" id="cms-pres-title">La Méthode Bisons</h2>
-                <p id="cms-pres-text">Nous ne faisons pas de l'animation, nous construisons des compétiteurs. Grâce à l'analyse vidéo haute fréquence et à un suivi biomécanique du geste, chaque topspin, chaque service et chaque remise est disséquée pour maximiser votre efficacité à la table.</p>
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <span class="session-badge" id="hero-badge">Session Été 2026</span>
+                <h1 class="hero-title" id="hero-title">
+                    <span>DOMINE</span> 
+                    L'ARENE DES 
+                    <em>BISONS</em>
+                </h1>
+                <p class="hero-description" id="hero-desc">
+                    Un stage de tennis de table ultra-premium conçu pour briser tes limites. Entraîne-toi comme les pros dans une atmosphère électrique.
+                </p>
+                <button class="cta-button" id="hero-cta">Rejoindre l'Élite</button>
             </div>
-            <div class="image-zoom-container" style="height: 450px;">
-                <img id="cms-pres-img" src="https://images.unsplash.com/photo-1611251101920-7f28876c49cc?auto=format&fit=crop&q=80&w=800" alt="Raquette de ping pong impact balle">
-            </div>
-        </div>
-    </section>
-
-    <section class="section advantages">
-        <div class="container">
-            <h2 class="section-title center">Une structure sur-mesure</h2>
-            <div class="cards-grid" id="cms-advantages-list">
-                <div class="card">
-                    <div class="card-icon">🧠</div>
-                    <h3>Tactique Avancée</h3>
-                    <p>Lecture des schémas de jeu adverses et automatisation des systèmes de transition coup droit / revers.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🏟️</div>
-                    <h3>Arène Pro</h3>
-                    <p>Entraînez-vous au Gymnase Jesse Owens : plus de 20 tables professionnelles et sol technique Gerflor.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🏆</div>
-                    <h3>Suivi Homologué</h3>
-                    <p>Stage sous agrément Jeunesse et Sport avec bilan technique individualisé remis en fin de semaine.</p>
+            
+            <div class="visual-container">
+                <div class="smash-wrapper">
+                    <div class="placeholder-img">🏓</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section team">
-        <div class="container">
-            <h2 class="section-title center">L'Élite Pédagogique</h2>
-            <div class="team-grid" id="cms-team-list">
-                
-                <div class="member-card-premium">
-                    <div class="member-overlay"></div>
-                    <div class="member-badge">DEJEPS</div>
-                    <div class="member-details">
-                        <h3>Nicolas Dumont</h3>
-                        <span>Directeur Technique</span>
-                        <p>Responsable du projet performance, expert en analyse vidéo et tactique de match.</p>
-                    </div>
-                </div>
-
-                <div class="member-card-premium cultural">
-                    <div class="member-overlay"></div>
-                    <div class="member-badge">Brevet d'État</div>
-                    <div class="member-details">
-                        <h3>Entraîneurs Nationaux</h3>
-                        <span>Relanceurs Élite</span>
-                        <p>Des partenaires d'entraînement rigoureux pour pousser vos retranchements physiques.</p>
-                    </div>
-                </div>
-
+        <section class="adn-section">
+            <div class="adn-content">
+                <h2 class="section-title" id="adn-title">
+                    L'INTENSITÉ À <br>CHAQUE INCLINAISON
+                    <border></border>
+                </h2>
+                <p class="adn-text" id="adn-p1">
+                    Ici, on oublie le ping-pong de loisir. Notre programme s'aligne sur les exigences du haut niveau : <strong>6 heures d'entraînement intensif par jour</strong>, paniers de balles robotisés, et travail physique spécifique.
+                </p>
+                <p class="adn-text" id="adn-p2">
+                    Chaque geste est disséqué par <strong>analyse vidéo instantanée</strong>. Tu ne viens pas pour jouer, tu viens pour acquérir la puissance du geste parfait et saboter la défense adverse.
+                </p>
             </div>
-        </div>
-    </section>
 
-    <footer class="footer" id="contact">
-        <div class="container">
-            <h2>Prêt à intégrer le troupeau ?</h2>
-            <p style="color: #94A3B8; max-width: 600px; margin: 0 auto 30px; font-size: 1.2rem;">Les places sont limitées pour garantir la qualité de l'encadrement (Ratio 1 pour 6).</p>
-            <div class="social-links">
-                <a href="#" class="social-link">Facebook</a>
-                <a href="#" class="social-link">Instagram</a>
-                <a href="#" class="social-link">YouTube</a>
+            <div class="adn-visual">
+                <div class="smash-wrapper">
+                    <div class="placeholder-img" style="background: linear-gradient(135deg, #0b1e36 0%, #22c55e 100%);">📊</div>
+                </div>
             </div>
-            <p class="copyright">VIBRAYE ASTT • Stade Eugène Garnier • 72320 VIBRAYE<br>Architecture Headless CMS Statique et Incassable</p>
-        </div>
-    </footer>
+        </section>
+    </main>
 
 </body>
 </html>
