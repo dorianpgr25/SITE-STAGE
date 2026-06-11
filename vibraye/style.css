@@ -1,73 +1,221 @@
+/* ==========================================================================
+   DESIGN SYSTEM "BRUTALISME ÉLECTRIQUE" - LES BISONS DE VIBRAYE (2026)
+   ========================================================================== */
+
 :root {
-    --navy: #0B1E36;
-    --green: #22C55E;
-    --dark: #020617;
-    --white: #F8FAFC;
-    --slate: #94A3B8;
+    --navy-dark: #030712;      /* Fond ultra sombre pour faire ressortir le néon */
+    --navy-bisons: #0B1E36;    /* Bleu officiel du club */
+    --neon-green: #22C55E;     /* Vert électrique - l'énergie du filet */
+    --neon-glow: rgba(34, 197, 94, 0.4);
+    --paddle-red: #EF4444;     /* Rouge revêtement pour le peps */
+    --white: #FFFFFF;
+    --text-muted: #94A3B8;
+    --curve: cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+html {
+    scroll-behavior: smooth;
+}
 
 body {
-    background: var(--dark);
+    background: var(--navy-dark);
     color: var(--white);
     font-family: 'Urbanist', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
 }
 
-h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; }
-
-.container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 100px 0; }
-
-/* Layout Flux Naturel (Anti-Casse) */
-.grid-2 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 60px;
-    align-items: center;
+h1, h2, h3 { 
+    font-family: 'Space Grotesk', sans-serif; 
+    text-transform: uppercase; 
+    letter-spacing: -1px;
 }
 
-/* Hero Section */
+.container { 
+    width: 90%; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 100px 0; 
+}
+
+/* ==========================================================================
+   ANIMATIONS ET EFFETS PHARE (LE PEPS)
+   ========================================================================== */
+
+/* L'effet zoom et inclinaison au survol des conteneurs d'images */
+.image-zoom-container {
+    width: 100%; 
+    height: 100%;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    transition: all 0.5s var(--curve);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.image-zoom-container img {
+    width: 100%; 
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s var(--curve), filter 0.5s ease;
+}
+
+/* Quand on passe la souris sur l'image : elle zoome et s'illumine */
+.image-zoom-container:hover {
+    border-color: var(--neon-green);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 0 30px var(--neon-glow);
+}
+
+.image-zoom-container:hover img { 
+    transform: scale(1.1);
+}
+
+/* ==========================================================================
+   HERO SECTION (L'ACCROCHE QUI FAIT RÊVER)
+   ========================================================================== */
+
 .hero {
     min-height: 100vh;
     display: flex;
     flex-wrap: wrap;
-    background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.1), transparent);
+    position: relative;
+    background: 
+        radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.15), transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(239, 68, 68, 0.1), transparent 50%);
 }
 
 .hero-content {
-    flex: 1; min-width: 350px;
-    padding: 100px 5%;
+    flex: 1; 
+    min-width: 350px;
+    padding: 120px 5%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
+    z-index: 2;
 }
 
-.hero h1 { font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1; margin-bottom: 20px; }
-.hero h1 span { color: var(--green); }
+.badge {
+    background: linear-gradient(135deg, var(--navy-bisons), #1e293b);
+    border: 1px solid var(--neon-green);
+    color: var(--neon-green);
+    padding: 8px 16px;
+    border-radius: 50px;
+    width: fit-content;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
+}
+
+.hero h1 { 
+    font-size: clamp(2.8rem, 7vw, 5.5rem); 
+    line-height: 0.95; 
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.hero h1 span { 
+    color: var(--neon-green);
+    text-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+}
+
+.hero p { 
+    color: var(--text-muted); 
+    font-size: 1.25rem; 
+    max-width: 550px; 
+    margin-bottom: 40px;
+}
+
+/* Bouton ultra-dynamique */
+.btn-main {
+    display: inline-block;
+    background: var(--neon-green);
+    color: var(--navy-dark);
+    text-decoration: none;
+    padding: 20px 45px;
+    border-radius: 12px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: fit-content;
+    transition: all 0.3s var(--curve);
+    box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
+}
+
+.btn-main:hover {
+    background: var(--white);
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
+}
 
 .hero-visual {
-    flex: 1; min-width: 350px;
+    flex: 1; 
+    min-width: 350px;
     height: 100vh;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Animations Images */
-.image-zoom-container {
-    width: 100%; height: 100%;
-    overflow: hidden;
-    border-radius: 12px;
+@media (max-width: 768px) {
+    .hero-visual { height: 50vh; padding: 20px; }
 }
 
-.image-zoom-container img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+/* ==========================================================================
+   SECTIONS & GRILLES (STRUCTURES INCASSABLES)
+   ========================================================================== */
+
+.section {
+    position: relative;
 }
 
-.image-zoom-container:hover img { transform: scale(1.1); }
+.section-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1;
+    margin-bottom: 30px;
+    position: relative;
+}
 
-/* Cartes Avantages */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--paddle-red);
+    margin-top: 15px;
+}
+
+.section-title.center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
+}
+.section-title.center::after { margin-left: auto; margin-right: auto; }
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 80px;
+    align-items: center;
+}
+
+/* Cartes Avantages Vibrantes */
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -75,24 +223,136 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; text-transform: uppercase
 }
 
 .card {
-    background: rgba(255,255,255,0.03);
-    padding: 40px;
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.05);
-    transition: 0.3s;
+    background: linear-gradient(135deg, rgba(11, 30, 54, 0.6), rgba(3, 7, 18, 0.8));
+    padding: 50px 40px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s var(--curve);
 }
 
-.card:hover { border-color: var(--green); transform: translateY(-10px); }
+.card:hover { 
+    border-color: var(--neon-green); 
+    transform: translateY(-10px); 
+    box-shadow: 0 15px 35px rgba(34, 197, 94, 0.1);
+}
 
-/* Footer Social */
-.footer { text-align: center; background: var(--navy); padding: 80px 0; }
-.social-links { display: flex; justify-content: center; gap: 20px; margin: 40px 0; }
-.social-link {
-    padding: 15px 30px;
-    border-radius: 50px;
-    border: 1px solid var(--green);
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 25px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+.card:hover .card-icon {
+    transform: scale(1.2) rotate(-5deg);
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
     color: var(--white);
-    text-decoration: none;
-    transition: 0.3s;
 }
-.social-link:hover { background: var(--green); color: var(--navy); }
+
+.card p {
+    color: var(--text-muted);
+}
+
+/* Trombinoscope Équipe */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+.member {
+    text-align: center;
+    group;
+}
+
+.member-img-wrapper {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s var(--curve);
+}
+
+.member-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member:hover .member-img-wrapper {
+    border-color: var(--neon-green);
+    transform: scale(1.05);
+    box-shadow: 0 0 25px var(--neon-glow);
+}
+
+.member h3 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.member span {
+    color: var(--neon-green);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   FOOTER ENFLAMMÉ ET BOUTONS DE RÉSEAUX
+   ========================================================================== */
+
+.footer { 
+    text-align: center; 
+    background: linear-gradient(to top, #020617, var(--navy-bisons)); 
+    padding: 120px 0 60px; 
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer h2 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.social-links { 
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    margin: 50px 0; 
+    flex-wrap: wrap;
+}
+
+.social-link {
+    padding: 18px 35px;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 0.3s var(--curve);
+    background: rgba(3, 7, 18, 0.4);
+}
+
+/* Effet néon au survol de chaque bouton réseau */
+.social-link:hover { 
+    background: var(--neon-green); 
+    color: var(--navy-dark); 
+    border-color: var(--neon-green);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px var(--neon-glow);
+}
+
+.copyright {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 60px;
+    opacity: 0.5;
+}
